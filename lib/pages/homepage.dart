@@ -7,14 +7,16 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 1,
+        elevation: 10,
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(
             Icons.menu,
-            color: Colors.black,
+            color: Colors.pink,
           ),
-          onPressed: () {},
+          onPressed: () {
+            debugPrint('Menu button pressed');
+          },
         ),
         actions: [
           IconButton(
@@ -66,12 +68,13 @@ class HomePage extends StatelessWidget {
       body: ListView(
         children: [
           const SizedBox(
-            height: 5.0,
+            height: 20.0,
           ),
           Stack(
             children: [
               const Image(
                 image: AssetImage("assets/images/samsung_gear_vr.jpg"),
+                width: double.infinity,
                 fit: BoxFit.cover,
               ),
               Positioned(

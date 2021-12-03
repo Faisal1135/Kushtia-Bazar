@@ -21,3 +21,18 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+class Student {}
+
+// ECOMMENCE 
+
+// PRODUCT 
+// PRODUCT_DETAILS
+// CART
+// ORDERS
+// ADDRESS -> cHEKOUT -> PAYMENT -> THANK YOU
+// LOGIN -> REGISTER -> FORGOT PASSWORD
+// PROFILE
+// SEARCH
+// CATEGORY
+// BRANDS

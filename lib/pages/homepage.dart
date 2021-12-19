@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kushtia_bazar/models/product_model.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -67,68 +68,118 @@ class HomePage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          const SizedBox(
-            height: 20.0,
-          ),
           Stack(
             children: [
               const Image(
                 image: AssetImage("assets/images/samsung_gear_vr.jpg"),
                 width: double.infinity,
-                fit: BoxFit.cover,
               ),
               Positioned(
                 left: 20,
-                top: 20,
-                child: RichText(
-                  text: const TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "SAMSUNG VR BOX \n",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 80,
-                bottom: 50,
-                child: RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "20 % Discount \n",
-                        style: TextStyle(
-                            fontSize: 20,
-                            backgroundColor: Colors.red.withAlpha(255),
-                            fontWeight: FontWeight.bold,
-                            color: Colors.amber),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 80,
-                bottom: 20,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.red),
-                  onPressed: () {},
-                  child: const Text(
-                    'Buy Now',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                bottom: 30,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    const Text(
+                      'POPULAR',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.white),
                     ),
-                  ),
+                    const SizedBox(height: 10.0),
+                    const Text(
+                      'The future of',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const Text(
+                      'virtual reality',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 32.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 15.0),
+                    Container(
+                      color: Colors.white,
+                      height: 70,
+                      width: MediaQuery.of(context).size.width,
+                      child: Row(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Image(
+                              image: AssetImage("assets/images/gear_vr.jpg"),
+                              height: 50,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10.0,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: const [
+                              Text(
+                                'Samsung GEAR VR ',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'FOR GAMERS',
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
+                          const Expanded(
+                            child: Icon(
+                              Icons.arrow_forward,
+                              size: 30,
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
                 ),
-              ),
+              )
             ],
+          ),
+          const SizedBox(
+            height: 10.0,
+          ),
+          const Padding(
+            padding: EdgeInsets.only(left: 20.0),
+            child: Text(
+              'Featured',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 10.0,
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: SizedBox(
+              height: 200,
+              child: Row(
+                children: products
+                    .map(
+                      (product) => Image.asset(product.imageUrl),
+                    )
+                    .toList(),
+              ),
+            ),
           )
         ],
       ),

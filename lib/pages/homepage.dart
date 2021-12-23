@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kushtia_bazar/models/product_model.dart';
+import 'package:kushtia_bazar/widgets/product_carusol.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -155,29 +156,71 @@ class HomePage extends StatelessWidget {
           const SizedBox(
             height: 10.0,
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 20.0),
-            child: Text(
-              'Featured',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
+          ProductCarosul(title: "Feature", products: products),
           const SizedBox(
             height: 10.0,
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: SizedBox(
-              height: 200,
-              child: Row(
-                children: products
-                    .map(
-                      (product) => Image.asset(product.imageUrl),
-                    )
-                    .toList(),
+          ProductCarosul(
+            title: "New",
+            products: products.sublist(1, 4),
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              'All Products',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+          ),
+
+          // make a product grid with Gridview
+          GridView.count(
+            primary: false,
+            shrinkWrap: true,
+            crossAxisCount: 2,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            children: List.generate(
+              products.length,
+              (index) => Material(
+                elevation: 4,
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    children: <Widget>[
+                      Expanded(
+                        child: Image.asset(products[index].imageUrl),
+                      ),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            Text(
+                              products[index].name,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              products[index].price.toStringAsFixed(2),
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                  color: Colors.deepOrange,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            ElevatedButton(
+                                onPressed: () {},
+                                child: const Text('Add to Cart'))
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ),
             ),
           )
